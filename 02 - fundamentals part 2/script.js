@@ -130,5 +130,23 @@ const myInfo = {
    job: "Front End Developer",
    friends: ["Ahmed", "Rama", "Sosa"],
 };
-// Dot vs. Bracket Notation
 
+// Dot vs. Bracket Notation
+console.log(myInfo.name); // if not found return undefined
+console.log(myInfo["job"]);
+
+// const interestedIn = prompt(
+//    "What do you know about me? Choose between name, age, job and friends"
+// );
+// if (myInfo[interestedIn]) {
+//    console.log(myInfo[interestedIn]); // if use notation return undefined, use bracket notation because it is expression
+// } else {
+//    console.log("Wrong request!! Choose between name, age, job and friends");
+// }
+
+myInfo.location = "Egypt";
+myInfo["email"] = "mr.uiux.dev@gmail.com";
+console.log(myInfo);
+console.log(
+   `${myInfo.name} has ${myInfo.friends.length} friend and his best friend is called ${myInfo.friends[2]}`
+);
