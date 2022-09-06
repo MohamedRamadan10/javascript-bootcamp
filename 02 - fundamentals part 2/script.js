@@ -24,24 +24,25 @@ console.log(appleOrangeJuice);
 
 // Function Declarations vs. Expressions
 // Declaration
+const currentYear = new Date().getFullYear();
 function calcAgeOne(birthYear) {
-   return new Date().getFullYear() - birthYear;
+   return currentYear - birthYear;
 }
 console.log(calcAgeOne(1993));
 
 // Expression
 const calcAgeTwo = function (birthYear) {
    // Anonymous function
-   return new Date().getFullYear() - birthYear;
+   return currentYear - birthYear;
 };
 console.log(calcAgeTwo(2000));
 
 // Arrow Function
-const calcAgeThree = (birthYear) => new Date().getFullYear() - birthYear;
+const calcAgeThree = (birthYear) => currentYear - birthYear;
 console.log(calcAgeThree(2005));
 
 const yearUntilRetirement = (birthYear, name) => {
-   const age = new Date().getFullYear() - birthYear;
+   const age = currentYear - birthYear;
    const retirement = 65 - age;
 
    return `I'm ${name} and I'll retire in ${retirement} years`;
@@ -84,7 +85,7 @@ console.log(friends[friends.length - 1]);
 friends[2] = "Mastaba";
 console.log(friends);
 
-const calcBirthAge = (years) => new Date().getFullYear() - years;
+const calcBirthAge = (years) => currentYear - years;
 const years = [1993, 2000, 2005, 2010];
 
 const ages = [
@@ -126,9 +127,28 @@ console.log(bills, tips, total);
 // Objects
 const myInfo = {
    name: "Mohamed Ramadan",
-   age: new Date().getFullYear() - 1993,
+   birthYear: 1993,
    job: "Front End Developer",
    friends: ["Ahmed", "Rama", "Sosa"],
+   hasDriverLicense: true,
+   calcAge: (birthYear) => currentYear - birthYear,
+   calcAgeV1: function () {
+      // console.log(this);
+      return currentYear - this.birthYear;
+   },
+   calcAgeV2: function () {
+      this.age = currentYear - this.birthYear;
+      return this.age;
+   },
+   getSummary: function () {
+      return `${this.name} is a ${this.calcAgeV1()} years old, he is ${
+         this.job
+      } and ${
+         this.hasDriverLicense
+            ? "has a driver license"
+            : "hasn't a driver license"
+      }`;
+   },
 };
 
 // Dot vs. Bracket Notation
@@ -139,14 +159,102 @@ console.log(myInfo["job"]);
 //    "What do you know about me? Choose between name, age, job and friends"
 // );
 // if (myInfo[interestedIn]) {
-//    console.log(myInfo[interestedIn]); // if use notation return undefined, use bracket notation because it is expression
+//    console.log(myInfo[interestedIn]); // if use dot return undefined, use bracket notation because it is expression
 // } else {
 //    console.log("Wrong request!! Choose between name, age, job and friends");
 // }
 
 myInfo.location = "Egypt";
 myInfo["email"] = "mr.uiux.dev@gmail.com";
-console.log(myInfo);
 console.log(
    `${myInfo.name} has ${myInfo.friends.length} friend and his best friend is called ${myInfo.friends[2]}`
 );
+
+// Object Methods
+// console.log(myInfo["calcAge"]());
+console.log(myInfo.calcAge(1993));
+console.log(myInfo.calcAgeV1());
+console.log(myInfo.calcAgeV2());
+console.log(myInfo.getSummary());
+
+// Challenge #3
+const markInfo = {
+   fullName: "Mark Miller",
+   mass: 78,
+   height: 1.69,
+   calcBMI: function () {
+      return this.mass / this.height ** 2;
+   },
+};
+const JohnInfo = {
+   fullName: "John Smith",
+   mass: 92,
+   height: 1.95,
+   calcBMI: function () {
+      return this.mass / this.height ** 2;
+   },
+};
+const bmiHigher = () => {
+   if (JohnInfo.calcBMI() > markInfo.calcBMI()) {
+      return `${
+         JohnInfo.fullName
+      } BMI is ${JohnInfo.calcBMI()} higher than ${markInfo.calcBMI()} BMI is ${markInfo.calcBMI()}`;
+   } else {
+      return `${markInfo.fullName} BMI is ${markInfo.calcBMI()} higher than ${
+         JohnInfo.fullName
+      } BMI is ${JohnInfo.calcBMI()}`;
+   }
+};
+console.log(bmiHigher());
+
+// Iterate the for loop
+for (let rep = 1; rep <= 10; rep++) {
+   console.log(`Lifting weights repetitions ${rep} 🏋️‍♀️`);
+}
+
+// Looping Arrays, Breaking and Continuing
+const infoArray = [
+   "Mohamed",
+   true,
+   currentYear - 1993,
+   "Front End",
+   ["Ahmed", "Islam"],
+];
+const types = [];
+for (let i = 0; i < infoArray.length; i++) {
+   console.log(infoArray[i], typeof infoArray[i]);
+   // types[i] = typeof infoArray[i];
+   types.push(typeof infoArray[i]);
+}
+console.log(types);
+
+let totalBillTips = [];
+for (let i = 0; i < bills.length; i++) {
+   totalBillTips.push(bills[i] + tips[i]);
+}
+console.log(totalBillTips);
+
+// Continue and break
+for (let i = 0; i < infoArray.length; i++) {
+   if (typeof infoArray[i] !== "string") continue;
+   console.log(infoArray[i]);
+}
+
+for (let i = 0; i < infoArray.length; i++) {
+   if (typeof infoArray[i] === "number") break;
+   console.log(infoArray[i]);
+}
+
+// Looping Backwards and Loops in Loops
+console.log("<!-- Backwards -->");
+for (let i = infoArray.length - 1; i >= 0; i--) {
+   console.log(i, infoArray[i]);
+}
+
+for (let exercise = 1; exercise < 4; exercise++) {
+   console.log(`--> Starting exercise ${exercise}`);
+
+   for (let rep = 1; rep < 6; rep++) {
+      console.log(`Exercise ${exercise}: Lifting weights repetition ${rep} 🏋️‍♀️`);
+   }
+}
