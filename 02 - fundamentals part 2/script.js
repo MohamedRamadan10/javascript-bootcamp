@@ -258,3 +258,41 @@ for (let exercise = 1; exercise < 4; exercise++) {
       console.log(`Exercise ${exercise}: Lifting weights repetition ${rep} 🏋️‍♀️`);
    }
 }
+
+// While loop
+let rep = 1;
+while (rep <= 10) {
+   console.log(`While: Lifting weights repetition ${rep} 🏋️‍♀️`);
+   rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+while (dice !== 6) {
+   console.log(`You rolled a dice ${dice}`);
+   dice = Math.trunc(Math.random() * 6) + 1;
+
+   if (dice === 6) console.log("Loop is about to end...");
+}
+
+// Challenge #4
+const billsArr = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+let tipsArr = [];
+let totalArr = [];
+
+for (let i = 0; i < billsArr.length; i++) {
+   const tip = calcTips(billsArr[i]);
+   tipsArr.push(tip);
+   totalArr.push(tip + billsArr[i]);
+}
+
+console.log(billsArr, tipsArr, totalArr);
+
+const calcAverage = function (arr) {
+   let sum = 0;
+   for (let i = 0; i < arr.length; i++) {
+      sum += arr[i];
+   }
+   return sum / arr.length;
+};
+
+console.log(calcAverage(totalArr));
