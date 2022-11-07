@@ -1,2 +1,32 @@
 Javascript
-    => is a high-level, object-oriented, multi-paradigm programming language
+    => is a high-level, object-oriented, multi-paradigm, interpreted or just-in-time compiled, dynamic, single threated, garbage-collection programming language with first-class functions and a non-blocking event loop concurrency modal
+
+Multi-Paradigm
+    => An approach and mindset of structuring code, which will direct your coding style and technique
+        1- Procedural programming
+        2- Object-oriented programming (OOP)
+        3- Functional programming (FP)
+
+First-class functions
+    => In a language with first-class functions, functions are simply treated as variables. We can pass them into other functions, and return them from functions.
+
+Dynamic
+    => Dynamically-typed language
+
+Concurrency modal
+    => how the JS engine handles multiple tasks happening at the same time
+        Why do we need that?
+            JS runs into single thread, so it can only do one thing at a time
+        So what about a long-running task?
+            Sounds like it would block the single thread. However, we want non-blocking behavior
+        How do we achieve that?
+            By using an event loop: takes long running tasks, executes them in the "background", and puts them back in the main thread once they are finished
+
+What's a JS engine?
+    => Program that executes js code, ex: v8 engine(chrome)
+
+    JS Engine contains
+        1- Call stack => where our code is executed (execution context)
+        2- Heap       => where objects are stored   (Object in memory)
+
+        
