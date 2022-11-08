@@ -29,4 +29,53 @@ What's a JS engine?
         1- Call stack => where our code is executed (execution context)
         2- Heap       => where objects are stored   (Object in memory)
 
-        
+Compilation vs interpretation
+    1. Compilation    => Entire code is converted into machine code at once, and written to a binary file that can be executed by a computer
+                    Source code ===================> Portable file: machine code =================> Program running 
+                                Step 1 Compilation                               Step 2 Execution
+
+    2. Interpretation => interpreter runs through the source code and executes it line by line 
+                    Source code =======================================> Program running 
+                                        Execution line by line
+
+    so JS is interpreted language and there is one problem that much much slower than compiled languages, many people JS is already interpreted language but in the fact, JS use mix the interpreter and compiler called Just-in-time
+
+    3. Just-in-time() => Entire code is converted into machine code at once, then executed immediately
+                    Source code ===================> No Portable file: machine code =================> Program running 
+                                Step 1 Compilation                                  Step 2 Execution
+
+JS Engine
+    Parsing (AST) abstract structure three
+                    ⬇
+        Compilation AST => machine code
+                    ⬇  Optimization during execution
+        Execution => happens in call stack
+
+JS runtime
+    Container including all the things that we need to use JS
+        1. JS Engine
+        2. Web APIs (DOM, Timers, Fetch API, ...)
+        3. Callback Queue (click, timer, data, ...)
+
+
+            An Execution Context
+                    ⬇
+        Creation of global execution
+context (for top-level code => Not inside a function)
+                    ⬇
+    Execution top-level code (inside global EC)
+                    ⬇
+    Execution of functions and waiting for callbacks
+
+Execution Context => Environment in which a piece of JS is executed. Stores all the necessary information for some code to be executed
+    1. Exactly one global execution context (EC): default context, created for code that is not inside any function (top-level)
+    2. One execution context per function: for each function call, a new execution context is created
+
+What's inside execution context?    
+    1. Variable Environment
+        => let, const and var declarations
+        => Functions
+        => Arguments Objects (Not in arrow function)
+
+    2. Scope Chain
+    3. this keyword (Not in arrow function)
