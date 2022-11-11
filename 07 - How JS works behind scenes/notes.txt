@@ -95,3 +95,31 @@ The 3 types of scope
     Function Scope    => Variables are accessible only inside function, Not outside, also called local scope 
 
     Block Scope (ES6) => Variables are accessible only inside block (block scoped), However, this only applies to let and const variables!, Functions are also block scoped (only in strict mode)
+
+
+Hoisting => Makes some types of varialbes accessible/usable in the code before they are actually    declared. "Variables lifted to the top of their scope"
+                ⬇
+Before execution, code is scanned for variable declarations, and for each variable, a new property is created in the variable envirnoment object
+
+                            Hosite?              Initial Value               Scope
+Function declarations         yes               actual functions             block
+var variables                 yes                   undefinde                Function
+let and const varialbes        no               <uninitialized>, TDZ         block
+function experssion and arrow             Depends if using var or let/const
+
+TDZ (Temporal Dead Zone), let and const => Makes it easier to avoid and catch errors: accessing variables before declaration is bad practice and should be avoided, makes const variables actually work
+
+How the this keyword works?
+    => this keyword/variable: Special variable that is created for every execution context (every function). Takes the value of (points to) the "owner" of the function in which the this keyword is used
+    => this is not static. it depends on how the function is called, and its value is only assigned when the function is actually called
+        1. Method               => this = <Object that is calling the method>
+        2. Simple function call => this = undefined (In stric mode! otherwise: window (in the browser))
+        3. Arrow function       => this = <this of surrounding function (lexical this)> Don't get own this
+        4. Event listener       => this = <DOM element that the handler is attached to>
+
+    => this does not point to the function itself, and also not its variable envirnoment
+
+
+Primitives vs. Objects (Primitive vs. Reference Types)
+    Primitives Types => Stored in call stack
+    Reference Types  => Stored in heap
