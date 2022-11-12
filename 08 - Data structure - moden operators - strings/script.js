@@ -5,45 +5,43 @@ const flights =
 	"_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
 // Data needed for first part of the section
+const weekdayss = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+const openingHours = {
+	[weekdayss[3]]: {
+		open: 12,
+		close: 22,
+	},
+	[weekdayss[4]]: {
+		open: 11,
+		close: 23,
+	},
+	[`${weekdayss[2 + 4]}`]: {
+		open: 0, // Open 24 hours
+		close: 24,
+	},
+};
 const restaurant = {
 	name: "Classico Italiano",
 	location: "Via Angelo Tavanti 23, Firenze, Italy",
 	categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
 	starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
 	mainMenu: ["Pizza", "Pasta", "Risotto"],
-	order: function (starterIndex, mainIndex) {
+	// Enhanced Object Literals
+	order(starterIndex, mainIndex) {
 		return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
 	},
-	openingHours: {
-		thu: {
-			open: 12,
-			close: 22,
-		},
-		fri: {
-			open: 11,
-			close: 23,
-		},
-		sat: {
-			open: 0, // Open 24 hours
-			close: 24,
-		},
-	},
-	orderDelivery: function ({
-		starterIndex = 0,
-		mainIndex = 0,
-		time = "12:00",
-		address,
-	}) {
+	openingHours,
+	orderDelivery({ starterIndex = 0, mainIndex = 0, time = "12:00", address }) {
 		console.log(
 			`Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
 		);
 	},
-	orderPasta: function (ing1, ing2, ing3) {
+	orderPasta(ing1, ing2, ing3) {
 		console.log(
 			`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
 		);
 	},
-	orderPizza: function (ings, ...otherIngs) {
+	orderPizza(ings, ...otherIngs) {
 		console.log(ings);
 		console.log(otherIngs);
 	},
@@ -71,8 +69,8 @@ const [a = 3, b = 10, c] = [, 4, 50];
 console.log(a, b, c);
 
 // Destructiong object
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
 
 const {
 	name: resturantName,
@@ -171,7 +169,7 @@ restaurant.orderPizza("mushrooms", "onion", "olives");
 // Short Circuiting (&& and ||)
 // || returns the first trutly value
 // && returns the first fasley value
-restaurant.guests = 20;
+restaurant.guests = undefined;
 
 const guest1 = restaurant.guests ? restaurant.guests : 10;
 console.log(guest1);
@@ -182,3 +180,141 @@ console.log(guest2);
 if (restaurant.orderPizza) restaurant.orderPizza("mushrooms", "spinach");
 
 restaurant.orderPasta && restaurant.orderPizza("mushrooms", "spinach");
+
+// The Nullish Coalescing Operator (??) value null and undefined. Not zero and ''
+const guest3 = restaurant.guests ?? 25;
+console.log(guest3);
+
+// Logical Assignment Operators
+const rest1 = {
+	name: "Capri",
+	// numGuests: 20,
+	numGuests: 0,
+};
+const rest2 = {
+	name: "La Piazza",
+	owner: "Giovanni Rossi",
+};
+// OR assignment operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+// nullish assignment operator (null or undefined)
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+// AND assignment operator
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+rest1.owner &&= "<ANONYMOUS>";
+rest2.owner &&= "<ANONYMOUS>";
+console.log(rest1);
+console.log(rest2);
+
+// #1 Challenge
+const game = {
+	team1: "Bayern Munich",
+	team2: "Borrussia Dortmund",
+	players: [
+		[
+			"Neuer",
+			"Pavard",
+			"Martinez",
+			"Alaba",
+			"Davies",
+			"Kimmich",
+			"Goretzka",
+			"Coman",
+			"Muller",
+			"Gnarby",
+			"Lewandowski",
+		],
+		[
+			"Burki",
+			"Schulz",
+			"Hummels",
+			"Akanji",
+			"Hakimi",
+			"Weigl",
+			"Witsel",
+			"Hazard",
+			"Brandt",
+			"Sancho",
+			"Gotze",
+		],
+	],
+	score: "4:0",
+	scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+	date: "Nov 9th, 2037",
+	odds: {
+		team1: 1.33,
+		x: 3.25,
+		team2: 6.5,
+	},
+};
+
+const [players1, players2] = game.players;
+console.log(players1, players2);
+
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
+
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+
+const players1Final = [...players1, "Thiago", "Coutinho", "Periscic"];
+console.log(players1Final);
+
+const {
+	odds: { team1, x: draw, team2 },
+} = game;
+console.log(team1, draw, team2);
+
+const printGoals = function (...players) {
+	console.log(`${players.length} goals were scored`);
+	console.log(players);
+};
+printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
+printGoals("Davies", "Muller");
+printGoals(...game.scored);
+
+team1 < team2 && console.log("Team 1 is more likely to win");
+team1 > team2 && console.log("Team 1 is more likely to win");
+
+// Looping Arrays: The for-of Loop
+const newMenuNew = [...restaurant.mainMenu, ...restaurant.starterMenu];
+for (const item of newMenuNew) console.log(item);
+for (const item of newMenuNew.entries())
+	console.log(`${item[0] + 1}: ${item[1]}`);
+for (const [i, el] of newMenuNew.entries()) console.log(`${i + 1}: ${el}`);
+// console.log([...newMenuNew.entries()]);
+
+// Optional Chaining (?.)
+console.log(restaurant.openingHours.mon?.open); // returns undefined
+console.log(restaurant.openingHours?.fri?.open); // returns undefined
+
+const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+for (const day of days) {
+	const open = restaurant.openingHours[day]?.open ?? "closed";
+	console.log(`On ${day}, we open at ${open}`);
+}
+
+console.log(restaurant.order?.(1, 2) ?? "Method does not exist");
+console.log(restaurant.orderRisotto?.(1, 2) ?? "Method does not exist");
+
+const users = [{ name: "MR", age: 29, email: "mr.uiux.dev@gmail.com" }];
+console.log(`${users[0]?.name ?? "Mohamed"}`);
+
+// Looping Objects: Object Keys, Values, and Entries
+const properties = Object.keys(openingHours);
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties) openStr += `${day}, `;
+console.log(openStr);
+
+const values = Object.values(openingHours);
+console.log(values);
+
+const entries = Object.entries(openingHours);
+console.log(entries);
+for (const [key, { open, close }] of entries)
+	console.log(`On ${key} we open at ${open} and close ${close}`);
