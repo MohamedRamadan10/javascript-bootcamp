@@ -2,49 +2,49 @@
 
 // Data needed for a later exercise
 const flights =
-	"_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
 // Data needed for first part of the section
 const weekdayss = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 const openingHours = {
-	[weekdayss[3]]: {
-		open: 12,
-		close: 22,
-	},
-	[weekdayss[4]]: {
-		open: 11,
-		close: 23,
-	},
-	[`${weekdayss[2 + 4]}`]: {
-		open: 0, // Open 24 hours
-		close: 24,
-	},
+   [weekdayss[3]]: {
+      open: 12,
+      close: 22,
+   },
+   [weekdayss[4]]: {
+      open: 11,
+      close: 23,
+   },
+   [`${weekdayss[2 + 4]}`]: {
+      open: 0, // Open 24 hours
+      close: 24,
+   },
 };
 const restaurant = {
-	name: "Classico Italiano",
-	location: "Via Angelo Tavanti 23, Firenze, Italy",
-	categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
-	starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
-	mainMenu: ["Pizza", "Pasta", "Risotto"],
-	// Enhanced Object Literals
-	order(starterIndex, mainIndex) {
-		return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-	},
-	openingHours,
-	orderDelivery({ starterIndex = 0, mainIndex = 0, time = "12:00", address }) {
-		console.log(
-			`Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-		);
-	},
-	orderPasta(ing1, ing2, ing3) {
-		console.log(
-			`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
-		);
-	},
-	orderPizza(ings, ...otherIngs) {
-		console.log(ings);
-		console.log(otherIngs);
-	},
+   name: "Classico Italiano",
+   location: "Via Angelo Tavanti 23, Firenze, Italy",
+   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+   mainMenu: ["Pizza", "Pasta", "Risotto"],
+   // Enhanced Object Literals
+   order(starterIndex, mainIndex) {
+      return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+   },
+   openingHours,
+   orderDelivery({ starterIndex = 0, mainIndex = 0, time = "12:00", address }) {
+      console.log(
+         `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+      );
+   },
+   orderPasta(ing1, ing2, ing3) {
+      console.log(
+         `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+      );
+   },
+   orderPizza(ings, ...otherIngs) {
+      console.log(ings);
+      console.log(otherIngs);
+   },
 };
 
 // Destructing array
@@ -73,9 +73,9 @@ console.log(a, b, c);
 // console.log(name, openingHours, categories);
 
 const {
-	name: resturantName,
-	openingHours: hours,
-	categories: tags,
+   name: resturantName,
+   openingHours: hours,
+   categories: tags,
 } = restaurant;
 console.log(resturantName, hours, tags);
 
@@ -84,7 +84,7 @@ console.log(menu, starters);
 
 // Mutating variables
 let d = 1991,
-	f = 1993;
+   f = 1993;
 const obj = { d: 4, f: 5, c: 10 };
 console.log(obj);
 ({ d, f } = obj);
@@ -92,18 +92,18 @@ console.log(obj);
 
 // Nested Objects
 const {
-	fri: { open, close },
+   fri: { open, close },
 } = openingHours;
 console.log(open, close);
 
 restaurant.orderDelivery({
-	time: "22:30",
-	address: "10th of ramadan, district 1",
-	mainIndex: 2,
-	starterIndex: 2,
+   time: "22:30",
+   address: "10th of ramadan, district 1",
+   mainIndex: 2,
+   starterIndex: 2,
 });
 restaurant.orderDelivery({
-	address: "10th of ramadan, district 1",
+   address: "10th of ramadan, district 1",
 });
 
 // Spread Operator because on right side of =
@@ -145,8 +145,8 @@ const [q, w, ...others] = [1, 2, 3, 4, 5, 6];
 console.log(q, w, others);
 
 const [pizza, risotto, ...otherFood] = [
-	...restaurant.mainMenu,
-	...restaurant.starterMenu,
+   ...restaurant.mainMenu,
+   ...restaurant.starterMenu,
 ];
 console.log(pizza, risotto, otherFood);
 
@@ -154,9 +154,9 @@ const { sat, ...weekdays } = restaurant.openingHours;
 console.log(sat, weekdays);
 
 const add = (...numbers) => {
-	let sum = 0;
-	for (let i = 0; i < numbers.length; i++) sum += numbers[i];
-	console.log(sum);
+   let sum = 0;
+   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+   console.log(sum);
 };
 add(2, 5);
 add(2, 5, 5, 10);
@@ -187,13 +187,13 @@ console.log(guest3);
 
 // Logical Assignment Operators
 const rest1 = {
-	name: "Capri",
-	// numGuests: 20,
-	numGuests: 0,
+   name: "Capri",
+   // numGuests: 20,
+   numGuests: 0,
 };
 const rest2 = {
-	name: "La Piazza",
-	owner: "Giovanni Rossi",
+   name: "La Piazza",
+   owner: "Giovanni Rossi",
 };
 // OR assignment operator
 // rest1.numGuests = rest1.numGuests || 10;
@@ -213,44 +213,44 @@ console.log(rest2);
 
 // #1 Challenge
 const game = {
-	team1: "Bayern Munich",
-	team2: "Borrussia Dortmund",
-	players: [
-		[
-			"Neuer",
-			"Pavard",
-			"Martinez",
-			"Alaba",
-			"Davies",
-			"Kimmich",
-			"Goretzka",
-			"Coman",
-			"Muller",
-			"Gnarby",
-			"Lewandowski",
-		],
-		[
-			"Burki",
-			"Schulz",
-			"Hummels",
-			"Akanji",
-			"Hakimi",
-			"Weigl",
-			"Witsel",
-			"Hazard",
-			"Brandt",
-			"Sancho",
-			"Gotze",
-		],
-	],
-	score: "4:0",
-	scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-	date: "Nov 9th, 2037",
-	odds: {
-		team1: 1.33,
-		x: 3.25,
-		team2: 6.5,
-	},
+   team1: "Bayern Munich",
+   team2: "Borrussia Dortmund",
+   players: [
+      [
+         "Neuer",
+         "Pavard",
+         "Martinez",
+         "Alaba",
+         "Davies",
+         "Kimmich",
+         "Goretzka",
+         "Coman",
+         "Muller",
+         "Gnarby",
+         "Lewandowski",
+      ],
+      [
+         "Burki",
+         "Schulz",
+         "Hummels",
+         "Akanji",
+         "Hakimi",
+         "Weigl",
+         "Witsel",
+         "Hazard",
+         "Brandt",
+         "Sancho",
+         "Gotze",
+      ],
+   ],
+   score: "4:0",
+   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+   date: "Nov 9th, 2037",
+   odds: {
+      team1: 1.33,
+      x: 3.25,
+      team2: 6.5,
+   },
 };
 
 const [players1, players2] = game.players;
@@ -266,13 +266,13 @@ const players1Final = [...players1, "Thiago", "Coutinho", "Periscic"];
 console.log(players1Final);
 
 const {
-	odds: { team1, x: draw, team2 },
+   odds: { team1, x: draw, team2 },
 } = game;
 console.log(team1, draw, team2);
 
 const printGoals = function (...players) {
-	console.log(`${players.length} goals were scored`);
-	console.log(players);
+   console.log(`${players.length} goals were scored`);
+   console.log(players);
 };
 printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
 printGoals("Davies", "Muller");
@@ -285,7 +285,7 @@ team1 > team2 && console.log("Team 1 is more likely to win");
 const newMenuNew = [...restaurant.mainMenu, ...restaurant.starterMenu];
 for (const item of newMenuNew) console.log(item);
 for (const item of newMenuNew.entries())
-	console.log(`${item[0] + 1}: ${item[1]}`);
+   console.log(`${item[0] + 1}: ${item[1]}`);
 for (const [i, el] of newMenuNew.entries()) console.log(`${i + 1}: ${el}`);
 // console.log([...newMenuNew.entries()]);
 
@@ -295,8 +295,8 @@ console.log(restaurant.openingHours?.fri?.open); // returns undefined
 
 const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 for (const day of days) {
-	const open = restaurant.openingHours[day]?.open ?? "closed";
-	console.log(`On ${day}, we open at ${open}`);
+   const open = restaurant.openingHours[day]?.open ?? "closed";
+   console.log(`On ${day}, we open at ${open}`);
 }
 
 console.log(restaurant.order?.(1, 2) ?? "Method does not exist");
@@ -317,4 +317,67 @@ console.log(values);
 const entries = Object.entries(openingHours);
 console.log(entries);
 for (const [key, { open, close }] of entries)
-	console.log(`On ${key} we open at ${open} and close ${close}`);
+   console.log(`On ${key} we open at ${open} and close ${close}`);
+
+// #2 Challenge
+for (const [i, player] of game.scored.entries())
+   console.log(`Goal ${i + 1}: ${player}`);
+
+let average = 0;
+for (const odd of Object.values(game.odds)) average += odd;
+average /= Object.values(game.odds).length;
+console.log(average);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+   const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
+   console.log(`Odd of ${teamStr} ${odd}`);
+}
+
+// Sets
+const ordersSet = new Set([
+   "Pasta",
+   "Pasta",
+   "Pizza",
+   "Risotto",
+   "Pizza",
+   "Pasta",
+]);
+console.log(ordersSet);
+console.log(new Set("Mohamed"));
+console.log(ordersSet.size);
+console.log(ordersSet.has("Pizza"));
+console.log(ordersSet.has("Bread"));
+ordersSet.add("Bread");
+ordersSet.add("Bread");
+ordersSet.delete("Risotto");
+// ordersSet.clear();
+console.log(ordersSet);
+for (const order of ordersSet) console.log(order);
+
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+
+// Maps
+const res = new Map();
+res.set("name", "classico italiano");
+res.set(1, "Firenze Italy");
+console.log(res.set(2, "Lisbon Portugal"));
+
+res.set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+   .set("open", 11)
+   .set("close", 23)
+   .set(true, "We are open :D")
+   .set(false, "We are closed :(");
+console.log(res.get("name"));
+console.log(res.get(true));
+console.log(res.get(1));
+
+const time = 21;
+console.log(res.get(time > res.get("open") && time < res.get("close")));
+
+console.log(res.has("categories"));
+res.delete(2);
+// res.clear();
+console.log(res);
+console.log(res.size);
